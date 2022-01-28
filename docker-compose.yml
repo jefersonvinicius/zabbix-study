@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  computer: 
+    image: ubuntu:20.04
+    command: tail -F anything
+  
+  database:
+    image: postgres:14.1-alpine
+    volumes:
+      - "./dbdata:/var/lib/postgresql/data/pgdata"
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - PG_DATA=/var/lib/postgresql/data/pgdata
+
