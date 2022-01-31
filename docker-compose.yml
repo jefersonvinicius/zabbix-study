@@ -3,13 +3,14 @@ version: "3.3"
 services:
   computer: 
     image: ubuntu:20.04
+    container_name: machine
     command: tail -F anything
   
   database:
-    image: postgres:14.1-alpine
-    volumes:
-      - "./dbdata:/var/lib/postgresql/data/pgdata"
+    image: postgres:14.1
+    container_name: postgres
     environment:
       - POSTGRES_PASSWORD=123456
-      - PG_DATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
 
