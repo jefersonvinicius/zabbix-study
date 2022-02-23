@@ -5,6 +5,7 @@ const zabbixAPI = axios.create({
   headers: {
     'Content-Type': 'application/json-rpc',
   },
+  timeout: 4000,
 });
 
 const Zabbix = {
