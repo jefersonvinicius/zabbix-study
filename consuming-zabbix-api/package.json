@@ -1,0 +1,11 @@
+{
+  "name": "consuming-zabbix-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "chart.js": "^3.7.1",
+    "chartjs-node-canvas": "^4.1.6"
+  }
+}

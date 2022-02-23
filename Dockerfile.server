@@ -2,12 +2,11 @@ FROM ubuntu:20.04
 
 ENV TZ=America/Sao_Paulo
 ENV DEBIAN_FRONTEND=noninteractive
+ENV DB_PASSWORD=zabbix
 
 # Add base utilities
 RUN apt-get update
 RUN apt-get install wget vim locales -y
-
-RUN echo $TZ
 
 # Prevent mysql script be removed from system
 RUN echo "#... except zabbix" >> /etc/dpkg/dpkg.cfg.d/excludes
@@ -25,7 +24,7 @@ RUN apt update
 RUN apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbix-sql-scripts zabbix-agent -y
 
 # Edit Zabbix configurations
-RUN echo "DBPassword=zabbix" >> /etc/zabbix/zabbix_server.conf
+RUN echo "DBPassword=${DB_PASSWORD}" >> /etc/zabbix/zabbix_server.conf
 
 # Configure locale language
 RUN locale-gen en_US
