@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 
 const zabbixAPI = axios.create({
-  baseURL: 'http://172.18.0.2/zabbix',
+  baseURL: 'http://172.19.0.3/zabbix',
   headers: {
     'Content-Type': 'application/json-rpc',
   },

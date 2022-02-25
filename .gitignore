@@ -1,4 +1,4 @@
-dbdata/
+.dbdata/
 node_modules
 chart.png
 database.sqlite

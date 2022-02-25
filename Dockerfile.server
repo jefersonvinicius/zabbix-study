@@ -6,14 +6,14 @@ ENV DB_PASSWORD=zabbix
 
 # Add base utilities
 RUN apt-get update
-RUN apt-get install wget vim locales -y
+RUN apt-get install wget vim locales iputils-ping -y
 
 # Prevent mysql script be removed from system
 RUN echo "#... except zabbix" >> /etc/dpkg/dpkg.cfg.d/excludes
 RUN echo "path-include=/usr/share/doc/zabbix*" >> /etc/dpkg/dpkg.cfg.d/excludes
 
 # Configure mysql-server
-RUN apt-get install mysql-server -y
+# RUN apt-get install mysql-server -y
 
 WORKDIR /home
 
@@ -25,6 +25,7 @@ RUN apt install zabbix-server-mysql zabbix-frontend-php zabbix-apache-conf zabbi
 
 # Edit Zabbix configurations
 RUN echo "DBPassword=${DB_PASSWORD}" >> /etc/zabbix/zabbix_server.conf
+RUN echo "DBHost=mysql-server" >> /etc/zabbix/zabbix_server.conf
 
 # Configure locale language
 RUN locale-gen en_US

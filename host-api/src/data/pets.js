@@ -9,7 +9,6 @@ async function getPetById(petId) {
   return new Promise((resolve, reject) => {
     const stmt = database.prepare('SELECT * FROM pets WHERE id = ?');
     stmt.get(petId, (error, row) => {
-      console.log({ row });
       if (error) reject(error);
       else resolve(row ? petRowToClass(row) : null);
     });
@@ -19,7 +18,6 @@ async function getPetById(petId) {
 
 async function getAllPets({ limit = 10, skip = 0 } = {}) {
   return new Promise((resolve, reject) => {
-    console.log({ limit, skip });
     const stmt = database.prepare('SELECT * FROM pets LIMIT ? OFFSET ?');
     stmt.all([limit, skip], (error, rows) => {
       if (error) reject(error);

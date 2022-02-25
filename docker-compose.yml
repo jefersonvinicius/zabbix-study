@@ -1,9 +1,27 @@
 version: "3.3"
 
 services:
+  mysqlserver:
+    image: mysql:8.0 
+    container_name: mysql-server
+    volumes:
+      - ./.dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - zabbixnetwork
+
   zabbixserver: 
     build:
       context: .
       dockerfile: Dockerfile.server
     container_name: zabbix-server
+    depends_on:
+      - mysqlserver
+    networks:
+      - zabbixnetwork
+  
+networks:
+  zabbixnetwork:
 
+# docker run --name mysql-tmp -v $(pwd)/.dbdata:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root --network zabbix-study_default -d mysql:8.0 
